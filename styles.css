@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+#editor {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+wokwi-led, wokwi-button {
+    margin: 0 5px;
+}
+.toolbar {
+    padding: 4px;
+    display: flex;
+    background-color: #ddd;
+    box-sizing: border-box;
+    width: 100%;
+}
