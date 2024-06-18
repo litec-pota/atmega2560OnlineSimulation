@@ -29,10 +29,10 @@
     <h3>Inputs Port D (Click + strg to hold the button)</h3>
     <div class="controls"></div>
         <div id="buttons">
-			<wokwi-pushbutton color="green" label="PD0"></wokwi-pushbutton>
-            <wokwi-pushbutton color="yellow" label="PD1"></wokwi-pushbutton>
-            <wokwi-pushbutton color="red" label="PD2"></wokwi-pushbutton>
-            <wokwi-pushbutton color="blue" label="PD3"></wokwi-pushbutton>
+			<wokwi-pushbutton color="green" label="PD0" pin="0"></wokwi-pushbutton>
+            <wokwi-pushbutton color="yellow" label="PD1" pin="1"></wokwi-pushbutton>
+            <wokwi-pushbutton color="red" label="PD2" pin="2"></wokwi-pushbutton>
+            <wokwi-pushbutton color="blue" label="PD3" pin="3"></wokwi-pushbutton>
         </div>
     </div>
     
@@ -43,6 +43,9 @@
         <div id="status-label"></div>
     </div>
     <div id="editor"></div>
+    <div class="compiler-output">
+        <pre id="compiler-output-text"></pre>
+    </div>
     
 
     <script src="main.js"></script>
