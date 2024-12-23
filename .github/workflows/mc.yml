@@ -1,0 +1,41 @@
+name: Multiple Choice Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        description: "Choose an option (Option A, Option B, or Option C)"
+        required: true
+        default: "Option A" # Standardauswahl
+        options: # Simulierte Multiple-Choice-Optionen
+          - "Option A"
+          - "Option B"
+          - "Option C"
+
+jobs:
+  handle-choice:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Output selected choice
+        run: echo "You selected: ${{ github.event.inputs.choice }}"
+
+      - name: Perform action based on choice
+        run: |
+          if [ "${{ github.event.inputs.choice }}" = "Option A" ]; then
+            echo "You selected Option A" > result.txt
+          elif [ "${{ github.event.inputs.choice }}" = "Option B" ]; then
+            echo "You selected Option B" > result.txt
+          elif [ "${{ github.event.inputs.choice }}" = "Option C" ]; then
+            echo "You selected Option C" > result.txt
+          else
+            echo "Invalid choice!" > result.txt
+          fi
+
+      - name: Commit and push result
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add result.txt
+          git commit -m "Added result based on selected choice"
+          git push
