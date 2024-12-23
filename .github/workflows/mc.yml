@@ -1,37 +1,32 @@
-name: Multiple Choice Workflow
+name: Create File Based on Input
 
 on:
   workflow_dispatch:
     inputs:
-      choice:
-        description: "Choose an option (A, B, or C)" # Anweisung zur Auswahl
+      name:
+        description: "Enter your name"
         required: true
-        default: "A" # Standardauswahl
+        default: "John Doe"
+      message:
+        description: "Enter your message"
+        required: true
 
 jobs:
-  handle-choice:
+  create-file:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Output selected choice
-        run: echo "You selected: ${{ github.event.inputs.choice }}"
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Perform action based on choice
+      - name: Create file based on input
         run: |
-          if [ "${{ github.event.inputs.choice }}" = "A" ]; then
-            echo "You selected Option A" > result.txt
-          elif [ "${{ github.event.inputs.choice }}" = "B" ]; then
-            echo "You selected Option B" > result.txt
-          elif [ "${{ github.event.inputs.choice }}" = "C" ]; then
-            echo "You selected Option C" > result.txt
-          else
-            echo "Invalid choice!" > result.txt
-          fi
+          echo "Name: ${{ github.event.inputs.name }}" > output.txt
+          echo "Message: ${{ github.event.inputs.message }}" >> output.txt
 
-      - name: Commit and push result
+      - name: Commit and push the file
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add result.txt
-          git commit -m "Added result based on selected choice"
+          git add output.txt
+          git commit -m "Added output.txt based on input"
           git push
